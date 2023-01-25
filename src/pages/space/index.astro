@@ -28,6 +28,33 @@ const [blocks] = await Promise.all([getAllBlocksByBlockId(post.PageId)]);
         <PostTitle post={post} enableLink={false} />
         <PostBody blocks={blocks} />
 
+        <div className={styles.dashBoard}>
+          <h4>英語学習時間</h4>
+          <p>横軸：週番号　/　縦軸：英語学習時間 (h)</p>
+          <p>開始は 2023/01</p>
+          <iframe
+            src="https://notion.vip/notion-chart/draw.html?config_documentId=1q_c5Tfrgui3My54wxKlwIcgJvUcdRWRqMTDuufz_v74&config_sheetName=ToDo_DB_2023&config_dataRange=M1%3AN54&config_chartType=column&config_theme=lightMode&option_legend_position=bottom&option_colors=%230B6E99"
+          ></iframe>
+
+          <h4>英語でジャーナリング</h4>
+          <p>
+            毎日、英語でジャーナリングした文字数（本当は毎日できていない）。なかなか大変なので、文字数を可視化してモチベーション維持に役立てる。
+          </p>
+          <p>
+            横軸：週番号　/　縦軸：週毎に集計した毎日のジャーナリングの平均文字数
+          </p>
+          <iframe
+            src="https://nochart.co/graph?graphID=fad597ff-0e6c-4104-87b3-5dc72cc2d23f"
+          ></iframe>
+
+          <h4>ランニング</h4>
+          <p>健康のためにランニングしている。月 100km 目標。</p>
+          <p>横軸：月　/　縦軸：月の合計距離(km)</p>
+          <iframe
+            src="https://notioncharts.io/embed/charts/3bf1665a-c46c-48f5-9644-67d415e369cc"
+            frameborder="0"></iframe>
+        </div>
+
         <footer></footer>
       </div>
     </main>
