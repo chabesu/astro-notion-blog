@@ -33,7 +33,7 @@ const [blocks] = await Promise.all([getAllBlocksByBlockId(post.PageId)]);
     </main>
 
     <aside>
-      <div>
+      <div className={styles.profile}>
         <PostFeaturedImage post={post} />
         <p>チャベス</p>
       </div>

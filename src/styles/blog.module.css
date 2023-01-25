@@ -111,3 +111,12 @@ aside {
   padding: 0;
   border: 0;
 }
+
+.profile p {
+  text-align: center;
+}
+
+.profile img {
+  margin:auto;
+  border-radius: 50%;
+}
