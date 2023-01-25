@@ -120,6 +120,8 @@ aside {
 .profile img {
   margin:auto;
   border-radius: 50%;
+  width:50%;
+  max-width:200px;
 }
 
 .twitterApption{
@@ -132,3 +134,8 @@ aside iframe {
   max-width:500px;
   border:none;
 }
+
+/* .dashBorad iframe{
+  width: 30%;
+  height:500px
+} */
