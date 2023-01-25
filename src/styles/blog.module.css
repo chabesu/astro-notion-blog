@@ -120,3 +120,14 @@ aside {
   margin:auto;
   border-radius: 50%;
 }
+
+.twitterApption{
+  text-align: center;
+}
+
+aside iframe {
+  height: 600px;
+  width: 100%;
+  max-width:500px;
+  border:none;
+}
