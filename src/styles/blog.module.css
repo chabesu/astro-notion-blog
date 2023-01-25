@@ -89,6 +89,7 @@ aside {
 .post :global(img) {
   max-width: 100%;
   display: inline-block;
+  margin:auto;
 }
 .post :global(blockquote) {
   margin: 0.6rem 0;
