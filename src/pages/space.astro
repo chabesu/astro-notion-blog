@@ -18,6 +18,19 @@ if (!post) {
 const [blocks] = await Promise.all([getAllBlocksByBlockId(post.PageId)]);
 ---
 
+<style>
+  main {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 70px 0 10px;
+  }
+
+  aside {
+    width: 30%;
+    max-width: 400px;
+  }
+</style>
+
 <Layout title={post.Title} path={getPostLink(post.Slug)}>
   <div className={styles.container}>
     <main>
