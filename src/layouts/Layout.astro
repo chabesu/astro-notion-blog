@@ -21,10 +21,12 @@ const siteDescription = description ? description : PUBLIC_SITE_DESCRIPTION;
 const siteURL = new URL(path, Astro.site).toString();
 const siteOGImage = new URL("/default-og-image.png", Astro.site);
 
-const navItems = [
+const navItems1 = [
   { label: "Home", path: "/" },
   { label: "Blog", path: "/blog" },
   { label: "Space", path: "/space" },
+];
+const navItems2 = [
   { label: "Portfolio", path: "https://notion-portfolio-site.vercel.app/" },
   { label: "Contact", path: "/contact" },
 ];
@@ -65,7 +67,18 @@ const navItems = [
 
       <ul class="nav">
         {
-          navItems.map(({ label, path: p }) => (
+          navItems1.map(({ label, path: p }) => (
+            <li key={label}>
+              <a href={p} class={p === path ? "active" : null}>
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="nav">
+        {
+          navItems2.map(({ label, path: p }) => (
             <li key={label}>
               <a href={p} class={p === path ? "active" : null}>
                 {label}
