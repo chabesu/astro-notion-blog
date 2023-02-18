@@ -1,0 +1,79 @@
+---
+import * as interfaces from "../lib/interfaces.ts";
+import TableOfContents from "./notion-blocks/TableOfContents.astro";
+import Callout from "./notion-blocks/Callout.astro";
+
+export interface Props {
+  blocks: interfaces.Block[];
+  isRoot: boolean;
+  level: number;
+  headings: interfaces.Block[];
+}
+
+const {
+  blocks: rawBlocks,
+  isRoot = false,
+  level = 1,
+  headings: rawHeadings = [],
+} = Astro.props;
+
+const blocks = rawBlocks.reduce((arr, block: interfaces.Block, i: number) => {
+  const isBulletedListItem = block.Type === "bulleted_list_item";
+  const isNumberedListItem = block.Type === "numbered_list_item";
+  const isToDo = block.Type === "to_do";
+
+  if (!isBulletedListItem && !isNumberedListItem && !isToDo)
+    return arr.concat(block);
+
+  let listType = "";
+  if (isBulletedListItem) {
+    listType = "bulleted_list";
+  } else if (isNumberedListItem) {
+    listType = "numbered_list";
+  } else {
+    listType = "to_do_list";
+  }
+
+  if (i === 0) {
+    const list: interfaces.List = {
+      Type: listType,
+      ListItems: [block],
+    };
+    return arr.concat(list);
+  }
+
+  const prevList = arr[arr.length - 1];
+
+  if (
+    (isBulletedListItem && prevList.Type !== "bulleted_list") ||
+    (isNumberedListItem && prevList.Type !== "numbered_list") ||
+    (isToDo && prevList.Type !== "to_do_list")
+  ) {
+    const list: interfaces.List = {
+      Type: listType,
+      ListItems: [block],
+    };
+    return arr.concat(list);
+  }
+
+  prevList.ListItems.push(block);
+
+  return arr;
+}, []);
+
+let headings = rawHeadings;
+if (isRoot) {
+  headings = blocks.filter((b: interfaces.Block) =>
+    ["heading_1", "heading_2", "heading_3"].includes(b.Type)
+  );
+}
+---
+
+{
+  blocks.map((block: interfaces.Block) => {
+    if (block.Type == "table_of_contents") {
+      return <TableOfContents block={block} headings={headings} />;
+    }
+    return null;
+  })
+}

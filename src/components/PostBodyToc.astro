@@ -1,0 +1,22 @@
+---
+import { Block } from "../lib/interfaces.ts";
+import NotionBlocksToc from "./NotionBlocksToc.astro";
+
+export interface Props {
+  blocks: Block[];
+}
+
+const { blocks } = Astro.props;
+---
+
+<div class="toc">
+  <NotionBlocksToc blocks={blocks} isRoot={true} />
+</div>
+
+<style>
+  .toc {
+    position: sticky;
+    margin-top: 50px;
+    top: 30px;
+  }
+</style>

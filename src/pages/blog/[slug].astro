@@ -15,6 +15,7 @@ import PostDate from "../../components/PostDate.astro";
 import PostTags from "../../components/PostTags.astro";
 import PostTitle from "../../components/PostTitle.astro";
 import PostBody from "../../components/PostBody.astro";
+import PostBodyToc from "../../components/PostBodyToc.astro";
 import BlogPostsLink from "../../components/BlogPostsLink.astro";
 import BlogTagsLink from "../../components/BlogTagsLink.astro";
 import styles from "../../styles/blog.module.css";
@@ -70,6 +71,7 @@ const [blocks, rankedPosts, recentPosts, tags, postsHavingSameTag] =
       <BlogPostsLink heading="おすすめ" posts={rankedPosts} />
       <BlogPostsLink heading="最新の記事" posts={recentPosts} />
       <BlogTagsLink heading="カテゴリー" tags={tags} />
+      <PostBodyToc blocks={blocks} />
     </aside>
   </div>
 </Layout>
