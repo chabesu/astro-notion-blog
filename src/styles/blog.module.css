@@ -53,7 +53,7 @@ aside {
   color: var(--fg);
 }
 .post :global(h4) {
-  margin: 2.2rem 0 2.4rem;
+  margin: 5rem 0 2.4rem;
   color: var(--fg);
   font-size: 1.8rem;
   border-bottom: 1px solid #ddd;
