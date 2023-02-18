@@ -1,38 +1,59 @@
 ---
-import * as interfaces from '../../lib/interfaces.ts'
-import { buildHeadingId } from '../../lib/blog-helpers.ts'
-import { snakeToKebab } from '../../lib/style-helpers.ts'
-import '../../styles/notion-color.css'
+import * as interfaces from "../../lib/interfaces.ts";
+import { buildHeadingId } from "../../lib/blog-helpers.ts";
+import { snakeToKebab } from "../../lib/style-helpers.ts";
+import "../../styles/notion-color.css";
 
 export interface Props {
-  block: interfaces.Block
-  headings: interfaces.Block[]
+  block: interfaces.Block;
+  headings: interfaces.Block[];
 }
 
-const { block, headings } = Astro.props
+const { block, headings } = Astro.props;
 ---
 
 <div class="table-of-contents">
-  {headings.map((headingBlock: interfaces.Block) => {
-    const heading = headingBlock.Heading1 || headingBlock.Heading2 || headingBlock.Heading3
+  <p>▼ 目次</p>
+  <hr />
+  {
+    headings.map((headingBlock: interfaces.Block) => {
+      const heading =
+        headingBlock.Heading1 || headingBlock.Heading2 || headingBlock.Heading3;
 
-    let indentClass = ''
-    if (headingBlock.Type === 'heading_2') {
-      indentClass = 'indent-1'
-    } else if (headingBlock.Type === 'heading_3') {
-      indentClass = 'indent-2'
-    }
+      let indentClass = "";
+      if (headingBlock.Type === "heading_2") {
+        indentClass = "indent-1";
+      } else if (headingBlock.Type === "heading_3") {
+        indentClass = "indent-2";
+      }
 
-    return (
-      <a href={`#${buildHeadingId(heading)}`} class={`table-of-contents ${snakeToKebab(block.TableOfContents.Color)} ${indentClass}`}>
-        {heading.RichTexts.map((richText: interfaces.RichText) => richText.PlainText).join('')}
-      </a>
-    )
-  })}
+      return (
+        <a
+          href={`#${buildHeadingId(heading)}`}
+          class={`table-of-content ${snakeToKebab(
+            block.TableOfContents.Color
+          )} ${indentClass}`}
+        >
+          {heading.RichTexts.map(
+            (richText: interfaces.RichText) => richText.PlainText
+          ).join("")}
+        </a>
+      );
+    })
+  }
 </div>
 
 <style>
   .table-of-contents {
+    background-color: #f7f9f9;
+    padding: 16px;
+    margin: 36px 0;
+  }
+  .table-of-contents > p {
+    font-weight: bold;
+    color: #787774;
+    margin-top: 4px;
+    margin-bottom: 4px;
   }
   .table-of-contents > a {
     display: block;
@@ -47,6 +68,6 @@ const { block, headings } = Astro.props
     padding-left: 1.5rem;
   }
   .table-of-contents > a.indent-2 {
-    padding-left: 3.0rem;
+    padding-left: 3rem;
   }
 </style>
